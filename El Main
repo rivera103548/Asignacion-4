@@ -1,0 +1,35 @@
+// 20Agosto-LinkBag.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include <iostream>
+#include "LinkedBag.h"
+#include "BagInterface.h"
+#include "Node.h"
+using namespace std;
+
+
+
+
+int main()
+{
+	int valor, valorFinal;
+	LinkedBag<int>* bag = nullptr;
+	bag = new LinkedBag<int>();
+	for (int i=0; i < 5; i++) {
+		cout << "Entre valor: ";
+		cin >> valor;
+		bag->add(valor);
+		
+	}
+	cout << endl;
+	
+	cout << "La lista es: " << endl;
+	bag->showList();
+	cout << endl << "Entre valor para poner al final de la lista: ";
+	cin >> valorFinal;
+	bag->añadeFinal(valorFinal);
+	cout << endl;
+	bag->showList();
+	
+	return 0;
+}
