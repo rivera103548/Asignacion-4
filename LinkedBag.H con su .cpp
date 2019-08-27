@@ -40,6 +40,8 @@ public:
 	
 	void showList()const;//const ItemType& anEntry)const;
 	bool añadeFinal(const ItemType& newEntry);
+	bool eliminayCambia(const ItemType& anEntry);
+	bool eliminayConserva(const ItemType& anEntry);
 
 
 }; // end LinkedBag
@@ -262,5 +264,50 @@ bool LinkedBag<ItemType>::añadeFinal(const ItemType& newEntry) {
 	itemCount++;
 	return true;
 }
+template <class ItemType>
+bool LinkedBag<ItemType>::eliminayCambia(const ItemType& anEntry) {
+	Node<ItemType>* lastPtr = headPtr;
+	while (lastPtr->getNext() != nullptr) {
+		lastPtr = lastPtr->getNext();
+		
 
+	}
+	Node<ItemType>* newLastPtr = headPtr;
+	while (newLastPtr->getNext() != lastPtr) {
+		newLastPtr = newLastPtr->getNext();
+	}
+	newLastPtr->setNext(NULL);
+
+	Node<ItemType>* encuentraValor = getPointerTo(anEntry);//Apunta a un lugar y cambia el contenido
+	encuentraValor->setItem(lastPtr->getItem());
+	delete lastPtr;
+	//////////////////
+	//delete newLastPtr;
+
+	itemCount--;
+	return true;
+}
+template<class ItemType>
+bool LinkedBag<ItemType>::eliminayConserva(const ItemType& anEntry) {
+Node<ItemType>* current = headPtr->getNext();
+Node<ItemType>* previous = headPtr;
+if(headPtr->getItem()==anEntry){
+	headPtr = headPtr->getNext();
+}
+
+else {
+while (current != NULL) {
+	if (current->getItem() == anEntry)
+		break;
+	else {
+		previous = current;
+		current = current->getNext();
+	}
+}
+previous->setNext(current->getNext());
+}
+
+	itemCount--;
+	return true;
+}
 #endif;
