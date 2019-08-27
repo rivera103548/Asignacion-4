@@ -12,8 +12,9 @@ using namespace std;
 
 int main()
 {
-	int valor, valorFinal;
+	int valor, valorFinal, valorCambiar;
 	LinkedBag<int>* bag = nullptr;
+	LinkedBag<int>* invocaCopy;
 	bag = new LinkedBag<int>();
 	for (int i=0; i < 5; i++) {
 		cout << "Entre valor: ";
@@ -30,6 +31,18 @@ int main()
 	bag->añadeFinal(valorFinal);
 	cout << endl;
 	bag->showList();
-	
-	return 0;
+	cout <<"Imprimir la lista invocando el copy constructor:"<< endl;
+	invocaCopy = bag;
+	invocaCopy->showList();//Invocando Copy Constructor
+
+	cout << "Escoja valor para eliminar y cambiar por el final: ";
+	cin >> valorCambiar;
+	bag->eliminayCambia(valorCambiar);
+	bag->showList();
+	cout << "El valor eliminado y la orden conservada(sin intercambiar por valor final): ";
+	cin >> valorCambiar;
+	bag->eliminayConserva(valorCambiar);
+	bag->showList();
+
+return 0;
 }
